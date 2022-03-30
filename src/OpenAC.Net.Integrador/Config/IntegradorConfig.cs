@@ -1,12 +1,12 @@
-// ***********************************************************************
+﻿// ***********************************************************************
 // Assembly         : OpenAC.Net.Integrador
 // Author           : RFTD
-// Created          : 05-30-2017
+// Created          : 02-19-2018
 //
 // Last Modified By : RFTD
-// Last Modified On : 05-30-2017
+// Last Modified On : 02-19-2018
 // ***********************************************************************
-// <copyright file="IntegradorParametro.cs" company="OpenAC .Net">
+// <copyright file="OpenIntegrador.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2014 - 2021 Projeto OpenAC .Net
 //
@@ -29,22 +29,35 @@
 // <summary></summary>
 // ***********************************************************************
 
-using OpenAC.Net.Core.Generics;
-using OpenAC.Net.DFe.Core.Attributes;
-using OpenAC.Net.DFe.Core.Serializer;
-
-namespace OpenAC.Net.Integrador
+namespace OpenAC.Net.Integrador.Config
 {
-    public sealed class IntegradorParametro : GenericClone<IntegradorParametro>
+    public sealed class IntegradorConfig
     {
-        #region Properties
+        #region Constructor
 
-        [DFeElement(TipoCampo.Str, "Nome", Ocorrencia = Ocorrencia.Obrigatoria)]
-        public string Nome { get; set; }
+        /// <summary>
+        /// Initializes a new instance of the <see cref="IntegradorConfig"/> class.
+        /// </summary>
+        internal IntegradorConfig()
+        {
+            PastaInput = "C:\\Integrador\\Input\\";
+            PastaOutput = "C:\\Integrador\\Output\\";
+            TimeOut = 45000;
+            ChaveAcessoValidador = "";
+        }
 
-        [DFeElement(TipoCampo.Str, "Valor", Ocorrencia = Ocorrencia.Obrigatoria)]
-        public string Valor { get; set; }
+        #endregion Constructor
 
-        #endregion Properties
+        #region Propriedades
+
+        public string PastaInput { get; set; }
+
+        public string PastaOutput { get; set; }
+
+        public int TimeOut { get; set; }
+
+        public string ChaveAcessoValidador { get; set; }
+
+        #endregion Propriedades
     }
 }

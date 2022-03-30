@@ -4,9 +4,9 @@
 // Created          : 05-30-2017
 //
 // Last Modified By : RFTD
-// Last Modified On : 02-19-2018
+// Last Modified On : 05-30-2017
 // ***********************************************************************
-// <copyright file="IntegradorParametroCollection.cs" company="OpenAC .Net">
+// <copyright file="IntegradorIdentificador.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2014 - 2021 Projeto OpenAC .Net
 //
@@ -29,38 +29,15 @@
 // <summary></summary>
 // ***********************************************************************
 
-using OpenAC.Net.DFe.Core.Collection;
+using OpenAC.Net.Core.Generics;
+using OpenAC.Net.DFe.Core.Attributes;
+using OpenAC.Net.DFe.Core.Serializer;
 
-namespace OpenAC.Net.Integrador
+namespace OpenAC.Net.Integrador.Commom
 {
-    public sealed class IntegradorParametroCollection : DFeCollection<IntegradorParametro>
+    public sealed class IntegradorIdentificador : GenericClone<IntegradorIdentificador>
     {
-        /// <summary>
-        /// Insere um paramentro na lista na posição informada.
-        /// </summary>
-        /// <param name="idx"></param>
-        /// <param name="nome"></param>
-        /// <param name="valor"></param>
-        public void InsertParametro(int idx, string nome, string valor)
-        {
-            var parametro = new IntegradorParametro
-            {
-                Nome = nome,
-                Valor = valor
-            };
-            Insert(idx, parametro);
-        }
-
-        /// <summary>
-        /// Adiciona um parametro na lista.
-        /// </summary>
-        /// <param name="nome"></param>
-        /// <param name="valor"></param>
-        public void AddParametro(string nome, string valor)
-        {
-            var parametro = AddNew();
-            parametro.Nome = nome;
-            parametro.Valor = valor;
-        }
+        [DFeElement(TipoCampo.Str, "Valor", Ocorrencia = Ocorrencia.Obrigatoria)]
+        public string Valor { get; set; }
     }
 }

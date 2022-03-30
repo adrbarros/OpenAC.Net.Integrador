@@ -1,12 +1,12 @@
-﻿// ***********************************************************************
+// ***********************************************************************
 // Assembly         : OpenAC.Net.Integrador
 // Author           : RFTD
-// Created          : 02-19-2018
+// Created          : 05-30-2017
 //
 // Last Modified By : RFTD
-// Last Modified On : 02-19-2018
+// Last Modified On : 05-30-2017
 // ***********************************************************************
-// <copyright file="OpenIntegrador.cs" company="OpenAC .Net">
+// <copyright file="IntegradorRetorno.cs" company="OpenAC .Net">
 //		        		   The MIT License (MIT)
 //	     		    Copyright (c) 2014 - 2021 Projeto OpenAC .Net
 //
@@ -29,39 +29,37 @@
 // <summary></summary>
 // ***********************************************************************
 
-using System.ComponentModel;
-using OpenAC.Net.Core;
+using OpenAC.Net.DFe.Core.Attributes;
+using OpenAC.Net.DFe.Core.Document;
 
-namespace OpenAC.Net.Integrador
+namespace OpenAC.Net.Integrador.Commom
 {
-    [TypeConverter(typeof(OpenExpandableObjectConverter))]
-    public sealed class IntegradorConfig
-    {
-        #region Constructor
+    [DFeRoot("Integrador")]
+    public sealed class IntegradorRetorno : DFeDocument<IntegradorRetorno>
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="IntegradorConfig"/> class.
-        /// </summary>
-        internal IntegradorConfig()
+    {
+        #region Constructors
+
+        public IntegradorRetorno()
         {
-            PastaInput = "C:\\Integrador\\Input\\";
-            PastaOutput = "C:\\Integrador\\Output\\";
-            TimeOut = 45000;
-            ChaveAcessoValidador = "";
+            Identificador = new IntegradorIdentificador();
+            IntegradorResposta = new IntegradorResposta();
+            Resposta = new IntegradorResp();
         }
 
-        #endregion Constructor
+        #endregion Constructors
 
-        #region Propriedades
+        #region Properties
 
-        public string PastaInput { get; set; }
+        [DFeElement("Identificador", Ocorrencia = Ocorrencia.Obrigatoria)]
+        public IntegradorIdentificador Identificador { get; set; }
 
-        public string PastaOutput { get; set; }
+        [DFeElement("IntegradorResposta", Ocorrencia = Ocorrencia.Obrigatoria)]
+        public IntegradorResposta IntegradorResposta { get; set; }
 
-        public int TimeOut { get; set; }
+        [DFeElement("Resposta", Ocorrencia = Ocorrencia.Obrigatoria)]
+        public IntegradorResp Resposta { get; set; }
 
-        public string ChaveAcessoValidador { get; set; }
-
-        #endregion Propriedades
+        #endregion Properties
     }
 }
